@@ -1,0 +1,88 @@
+cc_defaults {
+  name: "i2c_tools_defaults",
+  cppflags: [
+    "-Wstrict-prototypes",
+    "-Wshadow",
+    "-Wpointer-arith",
+    "-Wcast-qual",
+    "-Wcast-align",
+    "-Wwrite-strings",
+    "-Wnested-externs",
+    "-Winline",
+    "-W",
+    "-Wundef",
+    "-Wmissing-prototypes",
+  ],
+  local_include_dirs: [
+    "tools",
+    "include",
+  ]
+}
+
+cc_library_static {
+  name: "util",
+  srcs: [
+    "tools/util.c",
+  ],
+  defaults: ["i2c_tools_defaults"],
+}
+
+cc_library_static {
+  name: "i2cbusses",
+  srcs: [
+    "tools/i2cbusses.c",
+  ],
+  defaults: ["i2c_tools_defaults"],
+}
+
+cc_binary {
+  name: "i2cdetect",
+  srcs: [
+    "tools/i2cdetect.c",
+  ],
+  static_libs: [
+    "util",
+    "i2cbusses",
+  ],
+  defaults: ["i2c_tools_defaults"],
+  system_ext_specific: true,
+}
+
+cc_binary {
+  name: "i2cdump",
+  srcs: [
+    "tools/i2cdump.c",
+  ],
+  static_libs: [
+    "util",
+    "i2cbusses",
+  ],
+  defaults: ["i2c_tools_defaults"],
+  system_ext_specific: true,
+}
+
+cc_binary {
+  name: "i2cget",
+  srcs: [
+    "tools/i2cget.c",
+  ],
+  static_libs: [
+    "util",
+    "i2cbusses",
+  ],
+  defaults: ["i2c_tools_defaults"],
+  system_ext_specific: true,
+}
+
+cc_binary {
+  name: "i2cset",
+  srcs: [
+    "tools/i2cset.c",
+  ],
+  static_libs: [
+    "util",
+    "i2cbusses",
+  ],
+  defaults: ["i2c_tools_defaults"],
+  system_ext_specific: true,
+}
